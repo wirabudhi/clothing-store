@@ -27,6 +27,7 @@
                             <tr>
                                 <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left">ID Outlet</th>
                                 <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left">Nama Outlet</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left">Alamat</th>
                                 <th class="border-b font-medium p-4 pl-8 pt-0 pb-3 text-black text-left">Action</th>
                             </tr>
                         </thead>
@@ -39,6 +40,7 @@
                                     <td class="border-b border-slate-100 p-4 pl-8 text-black">{{ $s->id }}</td>
                                     {{-- Menampilkan Nama Outlet --}}
                                     <td class="border-b border-slate-100 p-4 pl-8 text-black">{{ $s->nama_outlet }}</td>
+                                    <td class="border-b border-slate-100 p-4 pl-8 text-black">{{ $s->alamat }}</td>
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-black dark:text-black">
                                         {{-- Button untuk menampilkan detail outlet --}}
                                         <a href="{{ route('outlet.show', $s->id) }}" class="border border-green-500 hover:bg-green-500 hover:text-white px-4 py-2 rounded-md">Detail</a>
@@ -54,49 +56,44 @@
                                 </tr>
                             @endforeach
                         </tbody>
-                    </table>
+                    </table>               
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-      var map = L.map('map').setView([-8.711878479696912, 115.18377128873612], 12)
+        var map = L.map('map').setView([-8.711878479696912, 115.18377128873612], 12)
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      }).addTo(map);
+        L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        }).addTo(map);
 
-      var markerIcon = L.icon({
-        iconUrl: "marker.png",
-        iconSize: [40, 40],
-        popupAnchor: [0, -40],
-      });
+        var markerIcon = L.icon({
+            iconUrl: "marker.png",
+            iconSize: [40, 40],
+            popupAnchor: [0, -40],
+        });
 
-      @foreach ($outlet as $item)
-        L.marker([{{ $item->lat }},{{ $item->lon }}], {icon: markerIcon,})
-          .bindPopup(
-          `
-            <div class="" style="width: 18rem;">
-            <img class="cropped-image" src="{{ asset('storage/images/outlet/gambar' . $item->gambar) }}" alt="User Photo">
-              <h4 class="pt-3 pb-1" style="text-align: center">{{$item->nama_outlet}}</h4>
-              <div class="border-top border-bottom">
-                <table class="table table-borderless my-1">
-                  <tbody>
-                    <tr>
-                      <th width="10px">Nama</th>
-                      <td>{{$item->nama_outlet}}</td>
-                    </tr>
-                    <tr>
-                      <th width="10px">Alamat</th>
-                      <td>{{$item->alamat}}</td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </img>
-          `
-        ).addTo(map)
-      @endforeach      
+        @foreach ($outlet as $item)
+            L.marker([{{ $item->lat }},{{ $item->lon }}], {icon: markerIcon,})
+            .bindPopup(
+            `
+                <div class="" style="width: 18rem;">
+                <img class="cropped-image" src="{{ Storage::url($item->gambar) }}" alt="User Photo">
+                <h4 class="pt-3 pb-1" style="text-align: center">{{$item->nama_outlet}}</h4>
+                <div class="border-top border-bottom">
+                    <table class="table table-borderless my-1">
+                    <tbody>
+                        <tr>
+                        <td>{{$item->alamat}}</td>
+                        </tr>
+                    </tbody>
+                    </table>
+                </div>
+                </img>
+            `
+            ).addTo(map)
+        @endforeach      
 
     </script>
 </x-app-layout>
