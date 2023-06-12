@@ -9,6 +9,9 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-5">
+                <div class="map" id="map"></div>
+            </div>
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     {{-- Membuat form dengan method POST untuk mengirim data --}}
@@ -89,8 +92,6 @@
                             {{-- Input error guna menampilkan error pada field gambar --}}
                             <x-input-error class="mt-2" :messages="$errors->get('gambar')" />
                         </div>
-
-                        <div class="map" id="map"></div>
                 
                         {{-- Menampilkan button Submit --}}
                         <div class="flex items-center gap-4">

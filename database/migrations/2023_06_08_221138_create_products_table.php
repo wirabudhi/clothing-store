@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('deskripsi');
             $table->string('ukuran');
             $table->integer('stok');
+            $table->string('gambar');
             $table->timestamps();
         });
     }

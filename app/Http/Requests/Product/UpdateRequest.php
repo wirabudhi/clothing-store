@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -22,10 +22,13 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nama_outlet' => 'required|max:255',
-            'alamat'    => 'required|max:255',
-            'lat'    => 'required',
-            'lon'   => 'required',
+            'outlets_id' => 'required',
+            'nama_product' => 'required|max:255',
+            'jenis_product' => 'required|max:255',
+            'harga' => 'required|max:255',
+            'deskripsi' => 'required|max:255',
+            'ukuran' => 'required|max:255',
+            'stok' => 'required|max:255',
             'gambar' => 'nullable|image|max:5120|mimes:jpg,jpeg,png',
         ];
     }

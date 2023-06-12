@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('tanggal_mulai');
             $table->date('tanggal_selesai');
             $table->string('kupon');
+            $table->string('gambar');
             $table->timestamps();
         });
     }
