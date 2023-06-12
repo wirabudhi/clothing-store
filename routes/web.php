@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EventController;
 use App\Http\Controllers\OutletController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -34,6 +35,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('outlet', OutletController::class);
     Route::resource('product', ProductController::class);
+    Route::resource('event', EventController::class);
 });
 
 require __DIR__.'/auth.php';

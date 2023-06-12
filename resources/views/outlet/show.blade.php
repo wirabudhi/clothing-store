@@ -14,7 +14,7 @@
                     {{-- Menampilkan Profile --}}
                     <div class="mb-6">
                         <p class="mt-1 text-sm text-gray-600">
-                            <img class="h-64 w-128 mx-auto" src="{{ Storage::url($outlet->gambar) }}" alt="{{ $outlet->nama }}" srcset="">
+                            <img class="h-64 w-128 mx-auto" src="{{ Storage::url($outlet->gambar) }}" alt="{{ $outlet->nama_outlet }}" srcset="">
                         </p>
                     </div>
 

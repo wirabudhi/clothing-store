@@ -5,20 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Event extends Model
 {
     use HasFactory;
 
-    protected $table = 'products';
+    protected $table = 'events';
 
     protected $fillable = [
         'outlets_id',
-        'nama_product',
-        'jenis_product',
-        'harga',
-        'deskripsi',
-        'ukuran',
-        'stok',
+        'nama_event',
+        'tanggal_mulai',
+        'tanggal_selesai',
+        'kupon',
         'gambar'
     ];
 
