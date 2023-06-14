@@ -37,10 +37,34 @@
                             </tr>
                             <tr>
                                 <td class="border-b border-slate-100 p-4 text-black text-left">
-                                    {{ 'Nama_outlet' }}
+                                    {{ 'Nama Outlet' }}
                                 </td>
                                 <td class="border-b border-slate-100 p-4 text-black text-left">
                                     {{ $outlet->nama_outlet }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ 'No Telp' }}
+                                </td>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ $outlet->no_telp }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ 'Email' }}
+                                </td>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ $outlet->email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ 'Jam Operasional' }}
+                                </td>
+                                <td class="border-b border-slate-100 p-4 text-black text-left">
+                                    {{ $outlet->jam_operasional }}
                                 </td>
                             </tr>
                             <tr>
@@ -90,6 +114,73 @@
                         {{-- Button untuk kembali menuju route outlet.index --}}
                     <a href="{{ route('outlet.index') }}" class="bg-blue-500 text-white px-4 py-2 rounded-md justify-center">Kembali</a>
                     </div>
+                    
+                </div>
+            </div>
+
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-12">
+                <div class="p-6 text-gray-900">
+
+                    <table class="border-collapse table-auto mx-auto w-full">
+                        {{-- Menampilkan table head --}}
+                        <thead>
+                            <tr>
+                                <th class="border-b font-bold p-4 pt-0 pb-3 text-black" colspan="4">Data Product</th>
+                            </tr>
+                            <tr>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">ID Product</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Nama Product</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Jenis Product</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Stok Product</th>
+                            </tr>
+                            
+                        </thead>
+                        {{-- Menampilkan table body --}}
+                        <tbody class="bg-white">
+                            @foreach ($products as $product)
+                            <tr>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $product->id }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $product->nama_product }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $product->jenis_product }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $product->stok }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    
+                </div>
+            </div>
+            
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mt-12">
+                <div class="p-6 text-gray-900">
+
+                    <table class="border-collapse table-auto mx-auto w-full">
+                        {{-- Menampilkan table head --}}
+                        <thead>
+                            <tr>
+                                <th class="border-b font-bold p-4 pt-0 pb-3 text-black" colspan="4">Data Event</th>
+                            </tr>
+                            <tr>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">ID Event</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Nama Event</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Tanggal Mulai</th>
+                                <th class="border-b font-medium p-4 pl-8 pt-3 pb-3 text-black">Tanggal Selesai</th>
+
+                            </tr>
+                            
+                        </thead>
+                        {{-- Menampilkan table body --}}
+                        <tbody class="bg-white">
+                            @foreach ($events as $event)
+                            <tr>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $event->id }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $event->nama_event }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $event->tanggal_mulai }}</td>
+                                <td class="border-b border-slate-100 p-4 pl-8 text-black text-center">{{ $event->tanggal_selesai }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                     
                 </div>
             </div>

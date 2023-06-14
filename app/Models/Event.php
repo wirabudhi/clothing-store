@@ -16,7 +16,6 @@ class Event extends Model
         'nama_event',
         'tanggal_mulai',
         'tanggal_selesai',
-        'kupon',
         'gambar'
     ];
 

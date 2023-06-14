@@ -10,11 +10,24 @@ class Outlet extends Model
     protected $table = 'outlets';
 
     // add fillable properties
-    public $fillable = [
+    protected $fillable = [
         'nama_outlet',
+        'no_telp',
+        'email',
+        'jam_operasional',
         'alamat',
         'lat',
         'lon',
         'gambar',
     ];
+
+    public function products()
+    {
+        return $this->hasMany(Product::class, 'outlets_id');
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class, 'outlets_id');
+    }
 }

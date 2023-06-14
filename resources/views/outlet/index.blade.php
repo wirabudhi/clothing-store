@@ -78,14 +78,25 @@
             L.marker([{{ $item->lat }},{{ $item->lon }}], {icon: markerIcon,})
             .bindPopup(
             `
-                <div class="" style="width: 18rem;">
+                <div class="" style="width: 12rem; display: flex; flex-direction: column; align-items: center; padding:10dp">
                 <img class="cropped-image" src="{{ Storage::url($item->gambar) }}" alt="User Photo">
-                <h4 class="pt-3 pb-1" style="text-align: center">{{$item->nama_outlet}}</h4>
+                <h4 class="pt-3 pb-1" style="text-align: center; margin-top:10px">{{$item->nama_outlet}}</h4>
                 <div class="border-top border-bottom">
-                    <table class="table table-borderless my-1">
+                    <table class="table table-borderless my-1 text-center">
                     <tbody>
                         <tr>
-                        <td>{{$item->alamat}}</td>
+                            <td>Alamat : {{$item->alamat}}</td>
+                        </tr>
+                        <tr>
+                            <td>Jam Operasional : {{$item->jam_operasional}}</td>
+                        </tr>
+                        <tr>
+                            <td>No Telp : {{$item->no_telp}}</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="{{ route('outlet.show', $item->id) }}" class="btn btn-primary">Detail</a>
+                            </td>
                         </tr>
                     </tbody>
                     </table>

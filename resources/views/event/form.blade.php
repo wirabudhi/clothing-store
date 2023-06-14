@@ -71,17 +71,6 @@
                             <x-input-error class="mt-2" :messages="$errors->get('tanggal_selesai')" />
                         </div>
                         
-                        {{-- Menampilkan form kupon --}}
-                        <div>
-                            {{-- Label Kupon --}}
-                            <x-input-label for="kupon" value="Kupon" />
-                            {{-- Text input kupon --}}
-                            {{-- Berisi :value guna mengecek apakah field ini menambahkan value baru atau menggunakan value lama --}}
-                            <x-text-input id="kupon" name="kupon" type="text" class="mt-1 block w-full" :value="$event->kupon ?? old('kupon')" required autofocus />
-                            {{-- Input error guna menampilkan error pada field kupon --}}
-                            <x-input-error class="mt-2" :messages="$errors->get('kupon')" />
-                        </div>
-                        
                         {{-- Menampilkan form gambar --}}
                         <div>
                             {{-- Label Gambar --}}

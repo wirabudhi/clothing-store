@@ -23,6 +23,9 @@ class UpdateRequest extends FormRequest
     {
         return [
             'nama_outlet' => 'required|max:255',
+            'no_telp' => 'required|max:255',
+            'email' => 'required',
+            'jam_operasional' => 'required|max:255',
             'alamat'    => 'required|max:255',
             'lat'    => 'required',
             'lon'   => 'required',

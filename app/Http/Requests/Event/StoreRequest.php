@@ -26,7 +26,6 @@ class StoreRequest extends FormRequest
             'nama_event' => 'required|max:255',
             'tanggal_mulai' => 'required',
             'tanggal_selesai' => 'required',
-            'kupon' => 'required|max:255',
             'gambar' => 'required|image|max:5120|mimes:jpg,jpeg,png'
         ];
     }

@@ -17,8 +17,10 @@ class OutletController extends Controller
      */
     public function index(): Response
     {
+        $outlets = Outlet::with(['products', 'events'])->get();
+
         return response()->view('outlet.index', [
-            'outlet' => Outlet::get(),
+            'outlet' => $outlets,
         ]);
     }
 
@@ -58,8 +60,14 @@ class OutletController extends Controller
      */
     public function show(string $id): Response
     {
+        $outlet = Outlet::findOrFail($id);
+        $products = $outlet->products()->get();
+        $events = $outlet->events()->get();
         return response()->view('outlet.show', [
-            'outlet' => Outlet::findOrFail($id),
+            'outlet' => $outlet,
+            // 'outlets' => Outlet::with(['products', 'events'])->findOrFail($id)->get(),
+            'products' => $products,
+            'events' => $events,
         ]);
     }
 

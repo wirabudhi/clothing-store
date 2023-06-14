@@ -61,14 +61,6 @@
                             </tr>
                             <tr>
                                 <td class="border-b border-slate-100 p-4 text-black text-left">
-                                    {{ 'Kupon' }}
-                                </td>
-                                <td class="border-b border-slate-100 p-4 text-black text-left">
-                                    {{ $event->kupon }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border-b border-slate-100 p-4 text-black text-left">
                                     {{ 'Nama Outlet' }}
                                 </td>
                                 <td class="border-b border-slate-100 p-4 text-black text-left">

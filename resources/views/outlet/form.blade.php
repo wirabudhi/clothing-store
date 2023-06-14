@@ -36,6 +36,39 @@
                             {{-- Input error guna menampilkan error pada field nama_outlet --}}
                             <x-input-error class="mt-2" :messages="$errors->get('nama_outlet')" />
                         </div>
+                        
+                        {{-- Menampilkan form no_telp --}}
+                        <div>
+                            {{-- Label No_telp --}}
+                            <x-input-label for="no_telp" value="No Telp" />
+                            {{-- Text input no_telp --}}
+                            {{-- Berisi :value guna mengecek apakah field ini menambahkan value baru atau menggunakan value lama --}}
+                            <x-text-input id="no_telp" name="no_telp" type="text" class="mt-1 block w-full" :value="$outlet->no_telp ?? old('no_telp')" required autofocus />
+                            {{-- Input error guna menampilkan error pada field no_telp --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('no_telp')" />
+                        </div>
+                        
+                        {{-- Menampilkan form email --}}
+                        <div>
+                            {{-- Label Email --}}
+                            <x-input-label for="email" value="Email" />
+                            {{-- Text input email --}}
+                            {{-- Berisi :value guna mengecek apakah field ini menambahkan value baru atau menggunakan value lama --}}
+                            <x-text-input id="email" name="email" type="text" class="mt-1 block w-full" :value="$outlet->email ?? old('email')" required autofocus />
+                            {{-- Input error guna menampilkan error pada field email --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('email')" />
+                        </div>
+                        
+                        {{-- Menampilkan form jam_operasional --}}
+                        <div>
+                            {{-- Label Jam_operasional --}}
+                            <x-input-label for="jam_operasional" value="Jam Operasional" />
+                            {{-- Text input jam_operasional --}}
+                            {{-- Berisi :value guna mengecek apakah field ini menambahkan value baru atau menggunakan value lama --}}
+                            <x-text-input id="jam_operasional" name="jam_operasional" type="text" class="mt-1 block w-full" :value="$outlet->jam_operasional ?? old('jam_operasional')" required autofocus />
+                            {{-- Input error guna menampilkan error pada field jam_operasional --}}
+                            <x-input-error class="mt-2" :messages="$errors->get('jam_operasional')" />
+                        </div>
 
                         {{-- Menampilkan form alamat --}}
                         <div>
