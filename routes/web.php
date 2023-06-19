@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\OutletController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 use App\Models\Outlet;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +39,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('outlet', OutletController::class);
     Route::resource('product', ProductController::class);
     Route::resource('event', EventController::class);
+
+    Route::group(['middleware' => ['role:admin']], function () {
+        Route::resource('user', UserController::class);
+    });
 });
 
 require __DIR__.'/auth.php';

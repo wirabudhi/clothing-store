@@ -24,6 +24,11 @@
                     <x-nav-link :href="route('event.index')" :active="request()->routeIs('event.index')">
                         {{ __('Event') }}
                     </x-nav-link>
+                    @role('admin')
+                        <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
+                            {{ __('User') }}
+                        </x-nav-link>
+                    @endrole
                 </div>
             </div>
 
