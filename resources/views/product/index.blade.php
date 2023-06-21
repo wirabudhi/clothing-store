@@ -6,8 +6,10 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight flex-1">
                 {{ 'Data Product' }}
             </h2>
-            {{-- Menambahkan button tambah yang mengarah ke halaman add product menggunakan route product.create --}}
-            <a href="{{ route('product.create') }}" class="bg-blue-500 text-white px-4 py-1 rounded-md">Tambah Product</a>
+            @can('create')
+                {{-- Menambahkan button tambah yang mengarah ke halaman add product menggunakan route product.create --}}
+                <a href="{{ route('product.create') }}" class="bg-blue-500 text-white px-4 py-1 rounded-md">Tambah Product</a>
+            @endcan
         </div>
     </x-slot>
 
@@ -41,14 +43,19 @@
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-black dark:text-black">
                                         {{-- Button untuk menampilkan detail product --}}
                                         <a href="{{ route('product.show', $p->id) }}" class="border border-green-500 hover:bg-green-500 hover:text-white px-4 py-2 rounded-md">Detail</a>
-                                        {{-- Button untuk menampilkan edit product --}}
-                                        <a href="{{ route('product.edit', $p->id) }}" class="border border-yellow-500 hover:bg-yellow-500 hover:text-white px-4 py-2 rounded-md">Edit</a>
-                                        {{-- Form khusus untuk melakukan hapus data product --}}
-                                        <form method="post" action="{{ route('product.destroy', $p->id) }}" class="inline">
-                                            @csrf
-                                            @method('delete')
-                                            <button class="border border-red-500 hover:bg-red-500 hover:text-white px-4 py-2 rounded-md">Hapus</button>
-                                        </form>
+                                        @can('update')
+                                            {{-- Button untuk menampilkan edit product --}}
+                                            <a href="{{ route('product.edit', $p->id) }}" class="border border-yellow-500 hover:bg-yellow-500 hover:text-white px-4 py-2 rounded-md">Edit</a>
+                                        @endcan
+
+                                        @can('delete')
+                                            {{-- Form khusus untuk melakukan hapus data product --}}
+                                            <form method="post" action="{{ route('product.destroy', $p->id) }}" class="inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button class="border border-red-500 hover:bg-red-500 hover:text-white px-4 py-2 rounded-md">Hapus</button>
+                                            </form>
+                                        @endcan
                                     </td>
                                 </tr>
                             @endforeach

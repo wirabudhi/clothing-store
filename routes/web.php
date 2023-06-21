@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('outlet', OutletController::class);
     Route::resource('product', ProductController::class);
     Route::resource('event', EventController::class);
+    Route::get('outlet/{id}/product/create', [ProductController::class, 'create'])->name('product.create');
+    Route::get('outlet/{id}/event/create', [EventController::class, 'create'])->name('event.create');
 
     Route::group(['middleware' => ['role:admin']], function () {
         Route::resource('user', UserController::class);

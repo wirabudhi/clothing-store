@@ -17,21 +17,20 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
-    {
-        return response()->view('product.index', [
-            'product' => Product::get(),
-        ]);
-    }
+    // public function index(): Response
+    // {
+    //     return response()->view('product.index', [
+    //         'product' => Product::get(),
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create(string $id): Response
     {
-        return response()->view('product.form', [
-            'outlets' => Outlet::orderBy('nama_outlet')->get(),
-        ]);
+        $outlet = Outlet::findOrFail($id);
+        return response()->view('product.form', compact('outlet'));
     }
 
     /**
@@ -51,7 +50,7 @@ class ProductController extends Controller
 
         if($create) {
             session()->flash('notif.success', 'Data product berhasil ditambahkan!');
-            return redirect()->route('product.index');
+            return redirect()->route('outlet.index');
         }
 
         return abort(500);
@@ -60,16 +59,16 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
-    {
-        $product = Product::join('outlets', 'outlets.id', '=', 'products.outlets_id')
-        ->select('products.*', 'outlets.nama_outlet')
-        ->findOrFail($id);
+    // public function show(string $id): Response
+    // {
+    //     $product = Product::join('outlets', 'outlets.id', '=', 'products.outlets_id')
+    //     ->select('products.*', 'outlets.nama_outlet')
+    //     ->findOrFail($id);
 
-        return response()->view('product.show', [
-            'product' => $product,
-        ]);
-    }
+    //     return response()->view('product.show', [
+    //         'product' => $product,
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -78,7 +77,6 @@ class ProductController extends Controller
     {
         return response()->view('product.form', [
             'product' => Product::findOrFail($id),
-            'outlets' => Outlet::orderBy('nama_outlet')->get(),
         ]);
     }
 
@@ -99,7 +97,7 @@ class ProductController extends Controller
 
         if($update) {
             session()->flash('notif.success', 'Data product berhasil diupdate!');
-            return redirect()->route('product.index');
+            return redirect()->route('outlet.index');
         }
 
         return abort(500);
@@ -115,7 +113,7 @@ class ProductController extends Controller
         $delete = $product->delete($id);
         if($delete) {
             session()->flash('notif.success', 'Data product berhasil dihapus!');
-            return redirect()->route('product.index');
+            return redirect()->route('outlet.index');
         }
 
 

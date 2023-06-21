@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('outlet.index')" :active="request()->routeIs('outlet.index')">
+                    {{-- <x-nav-link :href="route('outlet.index')" :active="request()->routeIs('outlet.index')">
                         {{ __('Outlet') }}
                     </x-nav-link>
                     <x-nav-link :href="route('product.index')" :active="request()->routeIs('product.index')">
@@ -23,7 +23,7 @@
                     </x-nav-link>
                     <x-nav-link :href="route('event.index')" :active="request()->routeIs('event.index')">
                         {{ __('Event') }}
-                    </x-nav-link>
+                    </x-nav-link> --}}
                     @role('admin')
                         <x-nav-link :href="route('user.index')" :active="request()->routeIs('user.index')">
                             {{ __('User') }}

@@ -16,21 +16,20 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
-    {
-        return response()->view('event.index', [
-            'event' => Event::get(),
-        ]);
-    }
+    // public function index(): Response
+    // {
+    //     return response()->view('event.index', [
+    //         'event' => Event::get(),
+    //     ]);
+    // }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create(string $id): Response
     {
-        return response()->view('event.form', [
-            'outlets' => Outlet::orderBy('nama_outlet')->get(),
-        ]);
+        $outlet = Outlet::findOrFail($id);
+        return response()->view('event.form', compact('outlet'));
     }
 
     /**
@@ -50,7 +49,7 @@ class EventController extends Controller
 
         if($create) {
             session()->flash('notif.success', 'Data event berhasil ditambahkan!');
-            return redirect()->route('event.index');
+            return redirect()->route('outlet.index');
         }
 
         return abort(500);
@@ -59,16 +58,16 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id): Response
-    {
-        $event = Event::join('outlets', 'outlets.id', '=', 'events.outlets_id')
-        ->select('events.*', 'outlets.nama_outlet')
-        ->findOrFail($id);
+    // public function show(string $id): Response
+    // {
+    //     $event = Event::join('outlets', 'outlets.id', '=', 'events.outlets_id')
+    //     ->select('events.*', 'outlets.nama_outlet')
+    //     ->findOrFail($id);
 
-        return response()->view('event.show', [
-            'event' => $event,
-        ]);
-    }
+    //     return response()->view('event.show', [
+    //         'event' => $event,
+    //     ]);
+    // }
 
     /**
      * Show the form for editing the specified resource.
@@ -98,7 +97,7 @@ class EventController extends Controller
 
         if($update) {
             session()->flash('notif.success', 'Data event berhasil diupdate!');
-            return redirect()->route('event.index');
+            return redirect()->route('outlet.index');
         }
 
         return abort(500);
@@ -114,7 +113,7 @@ class EventController extends Controller
         $delete = $event->delete($id);
         if($delete) {
             session()->flash('notif.success', 'Data event berhasil dihapus!');
-            return redirect()->route('event.index');
+            return redirect()->route('outlet.index');
         }
 
 

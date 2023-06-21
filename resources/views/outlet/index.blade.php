@@ -22,7 +22,7 @@
                     <div class="map" id="map"></div>
                 </div>
             </div>
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 text-red-800">
                     {{-- Menampilkan table untuk data outlet --}}
                     <table class="border-collapse table-auto w-full text-sm">
@@ -46,21 +46,53 @@
                                     <td class="border-b border-slate-100 p-4 pl-8 text-black">{{ $s->nama_outlet }}</td>
                                     <td class="border-b border-slate-100 p-4 pl-8 text-black">{{ $s->alamat }}</td>
                                     <td class="border-b border-slate-100 dark:border-slate-700 p-4 pl-8 text-black dark:text-black">
-                                        {{-- Button untuk menampilkan detail outlet --}}
-                                        <a href="{{ route('outlet.show', $s->id) }}" class="border border-green-500 hover:bg-green-500 hover:text-white px-4 py-2 rounded-md">Detail</a>
-                                        @can('update')
-                                            {{-- Button untuk menampilkan edit outlet --}}
-                                            <a href="{{ route('outlet.edit', $s->id) }}" class="border border-yellow-500 hover:bg-yellow-500 hover:text-white px-4 py-2 rounded-md">Edit</a>
-                                        @endcan
+                                        <x-dropdown align="top" width="48" class="block">
+                                            <x-slot name="trigger">
+                                                <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150">
+                                                    <div class="">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </button>
+                                            </x-slot>
 
-                                        @can('delete')
-                                            {{-- Form khusus untuk melakukan hapus data outlet --}}
-                                            <form method="post" action="{{ route('outlet.destroy', $s->id) }}" class="inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button class="border border-red-500 hover:bg-red-500 hover:text-white px-4 py-2 rounded-md">Hapus</button>
-                                            </form>
-                                        @endcan
+                                            <x-slot name="content" no-body-click>
+                                                <x-dropdown-link :href="route('outlet.show', $s->id)">
+                                                    {{ __('Detail') }}
+                                                </x-dropdown-link>
+
+                                                @can('update')
+                                                    <x-dropdown-link :href="route('outlet.edit', $s->id)">
+                                                        {{ __('Edit') }}
+                                                    </x-dropdown-link>
+                                                @endcan
+                                                
+                                                @can('delete')
+                                                    <form method="post" action="{{ route('outlet.destroy', $s->id) }}" class="inline">
+                                                        @csrf
+                                                        @method('delete')
+                                                        <x-dropdown-link :href="route('outlet.destroy', $s->id)"
+                                                            onclick="event.preventDefault();
+                                                            this.closest('form').submit();">
+                                                        {{ __('Delete') }}
+                                                        </x-dropdown-link>
+                                                    </form>
+                                                @endcan
+
+                                                @can('create')
+                                                    <x-dropdown-link :href="route('product.create', $s->id)">
+                                                        {{ __('Add Product') }}
+                                                    </x-dropdown-link>
+                                                    
+                                                    <x-dropdown-link :href="route('event.create', $s->id)">
+                                                        {{ __('Add Event') }}
+                                                    </x-dropdown-link>
+                                                @endcan
+
+                                                
+                                            </x-slot>
+                                        </x-dropdown>
                                     </td>
                                 </tr>
                             @endforeach
@@ -72,6 +104,7 @@
     </div>
 
     <script>
+
         var map = L.map('map').setView([-8.711878479696912, 115.18377128873612], 12)
 
         L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {

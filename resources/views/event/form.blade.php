@@ -26,14 +26,10 @@
                         {{-- Menampilkan form outlets_id --}}
                         <div>
                             {{-- Label Outlets_id --}}
-                            <x-input-label for="outlets_id" value="Nama Outlet" />
+                            <x-input-label for="outlets_id" value="Outlet ID" style="display: none"/>
                             {{-- Text input outlets_id --}}
                             {{-- Berisi :value guna mengecek apakah field ini menambahkan value baru atau menggunakan value lama --}}
-                            <select id="outlets_id" name="outlets_id" class="mt-1 block w-full border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" required autofocus>
-                                @foreach ($outlets as $item)
-                                    <option value="{{ $item->id }}" {{ isset($event) ? (($event->outlets_id == $item->id) ? 'selected' : '') : '' }}>{{ $item->nama_outlet }}</option>
-                                @endforeach
-                            </select>
+                            <x-text-input id="outlets_id" name="outlets_id" type="text" class="mt-1 block w-full" :value="isset($outlet) ? $outlet->id : $event->outlets_id" required autofocus style="display: none" />
                             {{-- Input error guna menampilkan error pada field outlets_id --}}
                             <x-input-error class="mt-2" :messages="$errors->get('outlets_id')" />
                         </div>
